@@ -1,0 +1,42 @@
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import { Part } from '../models/Part.js';
+import { Cycle } from '../models/Cycle.js';
+
+dotenv.config();
+
+const seed = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('🗄️ Connected to MongoDB for seeding');
+
+    // Clear existing data (optional – comment out if you want to keep)
+    await Part.deleteMany({});
+    await Cycle.deleteMany({});
+    console.log('🧹 Cleared existing parts and cycles');
+
+    // Sample parts
+    const partsData = [
+      { name: 'Aluminium Frame', category: 'frame', currentPrice: 4500 },
+      { name: 'Mountain Tyre', category: 'tyre', currentPrice: 650 },
+      { name: 'Road Tyre', category: 'tyre', currentPrice: 850 },
+      { name: 'Shimano 21-Speed', category: 'gear', currentPrice: 2500 },
+      { name: 'Comfort Seat', category: 'seat', currentPrice: 800 },
+      { name: 'Disc Brake Set', category: 'brake', currentPrice: 1800 },
+      { name: 'Flat Handlebar', category: 'handle', currentPrice: 600 },
+      { name: 'Standard Chain', category: 'chain', currentPrice: 400 },
+      { name: 'Flat Pedals', category: 'pedal', currentPrice: 350 },
+    ];
+
+    const parts = await Part.insertMany(partsData);
+    console.log(`✅ Inserted ${parts.length} parts`);
+
+    console.log('🌱 Seeding complete');
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Seed failed:', error.message);
+    process.exit(1);
+  }
+};
+
+seed();

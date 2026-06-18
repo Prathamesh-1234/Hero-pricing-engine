@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
+import partRoutes from './routes/partRoutes.js';
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ app.get('/ping', (req, res) => {
 app.get('/', (req, res) => {
   res.send('🚲 Hero Cycles Pricing Engine API');
 });
+
+app.use('/api/parts', partRoutes);
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
