@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import partRoutes from './routes/partRoutes.js';
+import cycleRoutes from './routes/cycleRoutes.js';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/parts', partRoutes);
+app.use('/api/cycles', cycleRoutes); 
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);

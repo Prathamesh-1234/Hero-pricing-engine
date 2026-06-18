@@ -27,12 +27,26 @@ const seed = async () => {
       { name: 'Standard Chain', category: 'chain', currentPrice: 400 },
       { name: 'Flat Pedals', category: 'pedal', currentPrice: 350 },
     ];
-
+    
     const parts = await Part.insertMany(partsData);
+    const cycle = await Cycle.create({
+    name: 'Hero Mountain Pro',
+    description: 'Standard mountain bike configuration',
+    components: [
+      { partId: parts[0]._id, quantity: 1 }, // frame (index 0)
+      { partId: parts[1]._id, quantity: 2 }, // tyres (index 1)
+      { partId: parts[3]._id, quantity: 1 }, // gear (index 3)
+      { partId: parts[4]._id, quantity: 1 }, // seat (index 4)
+      { partId: parts[5]._id, quantity: 1 }, // brakes (index 5)
+      { partId: parts[6]._id, quantity: 1 }, // handle (index 6)
+      ],
+    });
+    console.log(`✅ Created cycle: ${cycle.name}`);
     console.log(`✅ Inserted ${parts.length} parts`);
 
     console.log('🌱 Seeding complete');
     process.exit(0);
+
   } catch (error) {
     console.error('❌ Seed failed:', error.message);
     process.exit(1);
