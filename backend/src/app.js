@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import partRoutes from './routes/partRoutes.js';
 import cycleRoutes from './routes/cycleRoutes.js';
+import quoteRoutes from './routes/quoteRoutes.js';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/parts', partRoutes);
 app.use('/api/cycles', cycleRoutes); 
+app.use('/api/quotes', quoteRoutes);
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
