@@ -8,12 +8,12 @@ dotenv.config();
 const seed = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('🗄️ Connected to MongoDB for seeding');
+    console.log('Connected to MongoDB for seeding');
 
     // Clear existing data (optional – comment out if you want to keep)
     await Part.deleteMany({});
     await Cycle.deleteMany({});
-    console.log('🧹 Cleared existing parts and cycles');
+    console.log('Cleared existing parts and cycles');
 
     // Sample parts
     const partsData = [
@@ -33,22 +33,22 @@ const seed = async () => {
     name: 'Hero Mountain Pro',
     description: 'Standard mountain bike configuration',
     components: [
-      { partId: parts[0]._id, quantity: 1 }, // frame (index 0)
-      { partId: parts[1]._id, quantity: 2 }, // tyres (index 1)
-      { partId: parts[3]._id, quantity: 1 }, // gear (index 3)
-      { partId: parts[4]._id, quantity: 1 }, // seat (index 4)
-      { partId: parts[5]._id, quantity: 1 }, // brakes (index 5)
-      { partId: parts[6]._id, quantity: 1 }, // handle (index 6)
+      { partId: parts[0]._id, quantity: 1 }, 
+      { partId: parts[1]._id, quantity: 2 }, 
+      { partId: parts[3]._id, quantity: 1 }, 
+      { partId: parts[4]._id, quantity: 1 }, 
+      { partId: parts[5]._id, quantity: 1 }, 
+      { partId: parts[6]._id, quantity: 1 }, 
       ],
     });
-    console.log(`✅ Created cycle: ${cycle.name}`);
-    console.log(`✅ Inserted ${parts.length} parts`);
+    console.log(`Created cycle: ${cycle.name}`);
+    console.log(`Inserted ${parts.length} parts`);
 
-    console.log('🌱 Seeding complete');
+    console.log('Seeding complete');
     process.exit(0);
 
   } catch (error) {
-    console.error('❌ Seed failed:', error.message);
+    console.error('Seed failed:', error.message);
     process.exit(1);
   }
 };

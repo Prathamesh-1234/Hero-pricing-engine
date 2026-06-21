@@ -18,13 +18,16 @@ const partSchema = new mongoose.Schema({
   isActive: { type: Boolean, default: true },
 }, { timestamps: true });
 
-partSchema.pre('save', function(next) {
+partSchema.pre('save', function() {
   if (this.isNew) {
     this.priceHistory.push({ price: this.currentPrice, reason: 'initial' });
   } else if (this.isModified('currentPrice')) {
-    this.priceHistory.push({ price: this.currentPrice, reason: 'manual_update' });
+    // Only add automatic update if not already added by controller
+    const lastEntry = this.priceHistory[this.priceHistory.length - 1];
+    if (!lastEntry || lastEntry.price !== this.currentPrice) {
+      this.priceHistory.push({ price: this.currentPrice, reason: 'manual_update' });
+    }
   }
-  next();
 });
 
 export const Part = mongoose.model('Part', partSchema);

@@ -5,7 +5,7 @@ import { calculateCyclePrice } from '../services/pricingService.js';
 export const createCycle = async (req, res) => {
   try {
     const { name, description, components, isActive } = req.body;
-
+    
     const partIds = components.map(c => c.partId);
     const existingParts = await Part.find({ _id: { $in: partIds }, isActive: true });
     if (existingParts.length !== partIds.length) {

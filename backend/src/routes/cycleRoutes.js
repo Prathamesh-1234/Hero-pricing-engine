@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post('/', createCycle);
 router.get('/', getCycles);
-router.get('/:id/price', getCyclePrice);   // ← new endpoint
+router.get('/:id/price', getCyclePrice);
 
 export default router;
