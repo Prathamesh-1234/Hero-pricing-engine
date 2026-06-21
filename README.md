@@ -120,26 +120,6 @@ Hero-pricing-engine/
 
 ---
 
-## 🔄 API Endpoints
-
-### Parts
-- `GET /api/parts` – List all parts
-- `POST /api/parts` – Create a new part
-- `PUT /api/parts/:id` – Update part price
-- `GET /api/parts/:id` – Get part details
-
-### Configurations
-- `GET /api/configurations` – List all configurations
-- `POST /api/configurations` – Create a new configuration
-- `GET /api/configurations/:id` – Get configuration details
-
-### Quotes
-- `GET /api/quotes` – List all quotes
-- `POST /api/quotes` – Generate a new quote
-- `GET /api/quotes/:id` – Get quote details
-
----
-
 ## 💡 Key Features
 
 ✅ **Price Versioning** – Track price changes over time  
@@ -147,16 +127,6 @@ Hero-pricing-engine/
 ✅ **Reusable Configs** – Define cycle configurations once, use multiple times  
 ✅ **Real-time Calculations** – Instant price breakdowns  
 ✅ **MongoDB Storage** – Scalable data persistence  
-
----
-
-## 🛣️ Future Roadmap
-
-- [ ] User authentication & authorization
-- [ ] Export quotes as PDF
-- [ ] Discount management
-- [ ] Advanced reporting & analytics
-- [ ] Bulk import for parts
 
 ---
 
