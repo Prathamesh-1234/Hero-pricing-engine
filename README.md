@@ -58,7 +58,7 @@ NODE_ENV=development
 
 **Start the server:**
 ```bash
-npm start
+npm run dev
 ```
 
 The backend will run on `http://localhost:5000`
